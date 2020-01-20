@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../util/Validation";
+import {Auth} from 'aws-amplify';
+import {withRouter} from 'react-router-dom';
 
 class LogIn extends Component {
   state = {
@@ -32,6 +34,30 @@ class LogIn extends Component {
       });
     }
     //Integrate Cognito here on valid form submission
+    const {username, email, password} = this.state;
+
+    try{
+      const user = await Auth.signIn({
+        username,
+        password, 
+        attributes: {
+          email: email
+        }
+      })
+      console.log(user)
+      this.props.auth.authenticateUser(true)
+      this.props.auth.setAuthUser(user)
+      this.props.history.push("/");
+    } catch (error){
+      let err = null
+      !error.message ? err = {"message": error} : err = error;
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          cognito: err
+        }
+      })
+    }
   };
 
   onInputChange = event => {
@@ -98,4 +124,4 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+export default withRouter(LogIn);
