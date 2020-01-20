@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Register from './components/auth/Register';
+import Welcome from './components/auth/Welcome';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/welcome" component={Welcome} />
             </Switch>
           </div>
         </Router>
