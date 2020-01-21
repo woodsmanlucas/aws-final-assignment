@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import Register from "./components/auth/Register";
 import Welcome from "./components/auth/Welcome";
 import LogIn from "./components/auth/LogIn";
+import ForgotPassword from "./components/auth/ForgotPassword";
+import ChangePassword from "./components/auth/ChangePassword";
 import { Auth } from "aws-amplify";
 import { getElementError } from "@testing-library/react";
 
@@ -62,6 +64,12 @@ class App extends Component {
                 </Route>
                 <Route exact path="/login">
                   <LogIn auth={authProps} />
+                </Route>
+                <Route exact path="/forgotpassword">
+                  <ForgotPassword auth={authProps} />
+                </Route>
+                <Route exact path="/changepassword">
+                  <ChangePassword auth={authProps} />
                 </Route>
               </Switch>
             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FormErrors from "../FormErrors";
 import Validate from "../util/Validation";
 import {Auth} from 'aws-amplify';
+import { withRouter } from 'react-router-dom';
 
 class Register extends Component { 
   //state variables for form inputs and errors
@@ -153,5 +154,4 @@ class Register extends Component {
     );
   }
 }
-export default Register;
-
+export default withRouter(Register)
