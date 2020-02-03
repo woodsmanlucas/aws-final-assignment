@@ -9,11 +9,12 @@ import LogIn from "./components/auth/LogIn";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import ChangePassword from "./components/auth/ChangePassword";
 import { Auth } from "aws-amplify";
+import {Items} from "./components/Items";
 import { getElementError } from "@testing-library/react";
 
 class App extends Component {
   state = {
-    isAuth: false,
+    isAuth: sessionStorage.getItem("jwt-token"),
     user: null
   };
 
@@ -30,7 +31,7 @@ class App extends Component {
     try {
       const session = await Auth.currentSession();
       this.authenticateUser(true);
-      console.log(session);
+      sessionStorage.setItem("jwt-token", session.getAccessToken().getJwtToken());
       const user = await Auth.currentAuthenticatedUser();
       this.setAuthUser(user);
     } catch (error) {
@@ -70,6 +71,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/changepassword">
                   <ChangePassword auth={authProps} />
+                </Route>
+                <Route exact path="/items">
+                  <Items auth={authProps} />
                 </Route>
               </Switch>
             </div>
