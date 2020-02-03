@@ -18,7 +18,7 @@ export function Items(props){
             <div>
                 <h1>Items</h1>
                 {items.map((item) => {
-                    return <><p>{item.name}</p><img src={item.URL} /></>
+                    return <div key={item.id} ><p>{item.name}</p><img src={item.URL} /><div/>
                 })}
             </div>
         )
