@@ -6,6 +6,7 @@ export default class Navbar extends Component {
     try {
       this.props.auth.authenticateUser(false);
       this.props.auth.setAuthUser(null);
+      sessionStorage.clear();
     } catch (error) {
       console.error(error.message);
     }

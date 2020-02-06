@@ -10,7 +10,7 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import ChangePassword from "./components/auth/ChangePassword";
 import { Auth } from "aws-amplify";
 import {Items} from "./components/Items";
-import { getElementError } from "@testing-library/react";
+import {Item} from "./components/Item";
 
 class App extends Component {
   state = {
@@ -74,6 +74,9 @@ class App extends Component {
                 </Route>
                 <Route exact path="/items">
                   <Items auth={authProps} />
+                </Route>
+                <Route exact path="/items/:id">
+                  <Item auth={authProps} />
                 </Route>
               </Switch>
             </div>
